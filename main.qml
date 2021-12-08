@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
+import "calc.js" as Calculator
 
 Window {
     id: window
@@ -22,12 +23,18 @@ Window {
             id: textEdit
             x: 6
             y: 10
-            width: 468
+            width: 466
             height: 102
             text: qsTr("0")
             font.pixelSize: 50
             horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignBottom
+            Layout.rightMargin: 12
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            padding: 0
+            rightPadding: 0
+            leftPadding: 0
+            Layout.leftMargin: 4
             Layout.fillHeight: false
             Layout.margins: 4
             clip: false
@@ -37,7 +44,6 @@ Window {
             cursorVisible: false
             readOnly: true
             scale: 1
-            Layout.alignment: Qt.AlignTop
             Layout.fillWidth: true
         }
 
@@ -48,9 +54,9 @@ Window {
             width: 468
             height: 620
 
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
+            //anchors.left: parent.left
+            //anchors.right: parent.right
+            //anchors.bottom: parent.bottom
 
             Layout.rowSpan: 1
             Layout.columnSpan: 1
@@ -74,217 +80,150 @@ Window {
                 height: 78
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                enabled: false
-                width: 116
-                height: 78
+            Button {
+                buttonText: "C";
+                onClicked: {
+                    textEdit.text = "0";
+                    Calculator.clearState();
+                }
             }
 
             Button {
-                buttonText: "C"
+                buttonText: "Del";
+                onClicked: {
+                    if (textEdit.text.length > 1)
+                    {
+                        let newLen = textEdit.text.length - 1;
+                        textEdit.text = textEdit.text.substring(0, newLen);
+                    }
+                    else
+                    {
+                        textEdit.text = "0";
+                    }
+                }
             }
 
             Button {
-                buttonText: "Del"
-            }
-
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "7"
+                buttonText: "/";
+                onClicked: {
+                    //textEdit.text = buttonText;
+                    Calculator.setOperation(buttonText)
                 }
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "8"
+            Button {
+                buttonText: "7";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
+                }
+            }
+            Button {
+                buttonText: "8";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
+                }
+            }
+            Button {
+                buttonText: "9";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
                 }
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "9"
+            Button {
+                buttonText: "X";
+                onClicked: {
+                    //textEdit.text = buttonText;
+                    Calculator.setOperation(buttonText)
                 }
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "X"
+            Button {
+                buttonText: "4";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
+                }
+            }
+            Button {
+                buttonText: "5";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
+                }
+            }
+            Button {
+                buttonText: "6";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
                 }
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "4"
+            Button {
+                buttonText: "-";
+                onClicked: {
+                    //textEdit.text = buttonText;
+                    Calculator.setOperation(buttonText)
                 }
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "5"
+            Button {
+                buttonText: "1";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
+                }
+            }
+            Button {
+                buttonText: "2";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
+                }
+            }
+            Button {
+                buttonText: "3";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
                 }
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "6"
+            Button {
+                buttonText: "+";
+                onClicked: {
+                    //textEdit.text = buttonText;
+                    Calculator.setOperation(buttonText)
                 }
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "-"
+            Button {
+                buttonText: "+/-";
+                onClicked: {
+                    textEdit.text = Calculator.negValue(textEdit.text);
                 }
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "1"
+            Button {
+                buttonText: "0";
+                onClicked: {
+                    textEdit.text = textEdit.text + buttonText;
+                    Calculator.pushValue(buttonText);
                 }
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "2"
-                }
+            Button {
+                buttonText: ".";
+                onClicked: textEdit.text = textEdit.text + buttonText
             }
 
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "3"
-                }
-            }
-
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "+"
-                }
-            }
-
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "+/-"
-                }
-            }
-
-            Rectangle {
-
-                id: button_0
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "0"
-                }
-
-                TapHandler {
-                    onTapped: button_0.width += 10
-                }
-            }
-
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "."
-                }
-            }
-
-            Rectangle {
-                color: "lightblue"; radius: 5.0
-                width: 116
-                height: 78
-
-                Text {
-                    anchors.centerIn: parent
-                    font.pointSize: 24
-                    text: "="
-                }
+            Button {
+                buttonText: "=";
+                onClicked: textEdit.text = Calculator.calc()
             }
         }
     }
@@ -292,6 +231,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}D{i:1}
+    D{i:0;formeditorZoom:0.66}
 }
 ##^##*/

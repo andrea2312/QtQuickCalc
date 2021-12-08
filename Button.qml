@@ -4,6 +4,7 @@ Item {
     id: container
 
     property alias buttonText: button.text
+    signal clicked(string text)
 
     width: 116
     height: 78
@@ -32,5 +33,7 @@ Item {
 
         onEntered: button.color = button.pressedColor
         onExited: button.color = button.defColor
+
+        onClicked: container.clicked(button.text)
     }
 }
