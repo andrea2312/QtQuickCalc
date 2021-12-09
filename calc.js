@@ -38,7 +38,7 @@ function div(a, b) {
 
 function calc() {
 
-    console.log(String(Operation));
+    //console.log(String(Operation));
 
     if (Values.length < 2)
         return 0;

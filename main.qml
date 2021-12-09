@@ -10,6 +10,11 @@ Window {
     visible: true
     title: qsTr("Quick Calc Example")
 
+    maximumHeight: height
+    maximumWidth: width
+    minimumHeight: height
+    minimumWidth: width
+
     ColumnLayout {
         id: colLayout
         visible: true
@@ -55,10 +60,6 @@ Window {
             height: 620
 
             property bool newDigit: true
-
-            //anchors.left: parent.left
-            //anchors.right: parent.right
-            //anchors.bottom: parent.bottom
 
             Layout.rowSpan: 1
             Layout.columnSpan: 1
