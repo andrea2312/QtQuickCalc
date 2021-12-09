@@ -12,7 +12,7 @@ function pushValue(value) {
 
 function negValue(value) {
     let res = parseInt(value) * -1;
-    return toString(res);
+    return String(res);
 }
 
 function clearState() {

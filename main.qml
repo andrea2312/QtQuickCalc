@@ -54,6 +54,8 @@ Window {
             width: 468
             height: 620
 
+            property bool newDigit: true
+
             //anchors.left: parent.left
             //anchors.right: parent.right
             //anchors.bottom: parent.bottom
@@ -84,6 +86,7 @@ Window {
                 buttonText: "C";
                 onClicked: {
                     textEdit.text = "0";
+                    grid.newDigit = true
                     Calculator.clearState();
                 }
             }
@@ -91,6 +94,7 @@ Window {
             Button {
                 buttonText: "Del";
                 onClicked: {
+                    grid.newDigit = true
                     if (textEdit.text.length > 1)
                     {
                         let newLen = textEdit.text.length - 1;
@@ -107,6 +111,8 @@ Window {
                 buttonText: "/";
                 onClicked: {
                     //textEdit.text = buttonText;
+                    grid.newDigit = true;
+                    Calculator.pushValue(textEdit.text);
                     Calculator.setOperation(buttonText)
                 }
             }
@@ -114,22 +120,37 @@ Window {
             Button {
                 buttonText: "7";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
             Button {
                 buttonText: "8";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
             Button {
                 buttonText: "9";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
 
@@ -137,6 +158,8 @@ Window {
                 buttonText: "X";
                 onClicked: {
                     //textEdit.text = buttonText;
+                    grid.newDigit = true;
+                    Calculator.pushValue(textEdit.text);
                     Calculator.setOperation(buttonText)
                 }
             }
@@ -144,22 +167,37 @@ Window {
             Button {
                 buttonText: "4";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
             Button {
                 buttonText: "5";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
             Button {
                 buttonText: "6";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
 
@@ -167,6 +205,8 @@ Window {
                 buttonText: "-";
                 onClicked: {
                     //textEdit.text = buttonText;
+                    grid.newDigit = true;
+                    Calculator.pushValue(textEdit.text);
                     Calculator.setOperation(buttonText)
                 }
             }
@@ -174,22 +214,37 @@ Window {
             Button {
                 buttonText: "1";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
             Button {
                 buttonText: "2";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
             Button {
                 buttonText: "3";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
 
@@ -197,6 +252,8 @@ Window {
                 buttonText: "+";
                 onClicked: {
                     //textEdit.text = buttonText;
+                    grid.newDigit = true;
+                    Calculator.pushValue(textEdit.text);
                     Calculator.setOperation(buttonText)
                 }
             }
@@ -211,8 +268,13 @@ Window {
             Button {
                 buttonText: "0";
                 onClicked: {
-                    textEdit.text = textEdit.text + buttonText;
-                    Calculator.pushValue(buttonText);
+                    if (grid.newDigit)
+                    {
+                        grid.newDigit = false;
+                        textEdit.text = buttonText;
+                    }
+                    else
+                        textEdit.text = textEdit.text + buttonText;
                 }
             }
 
@@ -223,7 +285,10 @@ Window {
 
             Button {
                 buttonText: "=";
-                onClicked: textEdit.text = Calculator.calc()
+                onClicked: {
+                    Calculator.pushValue(textEdit.text);
+                    textEdit.text = Calculator.calc()
+                }
             }
         }
     }
